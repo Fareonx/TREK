@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dolomitlər Həftəsonu</title>
+<meta name="description" content="Bologna → Dolomitlər (Cənubi Tirol), 10–11 oktyabr 2026: saatbasaat plan, xəritə, canlı hava, büdcə kalkulyatoru və əşya siyahısı.">
+<meta name="theme-color" content="#1f4d3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+:root {
+  --bg: #f4f1ea;
+  --surface: #ffffff;
+  --surface-2: #ece7dc;
+  --text: #1d2420;
+  --muted: #59645e;
+  --line: rgba(29, 36, 32, .12);
+  --forest: #1f4d3a;
+  --forest-2: #2d6a4f;
+  --forest-ink: #f4f1ea;
+  --accent: #d96c1f;
+  --accent-soft: #fbe5d3;
+  --accent-ink: #ffffff;
+  --day1: #d96c1f;
+  --day2: #1f7a9c;
+  --extra: #6b6f8a;
+  --ok: #2d7d4f;
+  --warn: #a65f00;
+  --warn-soft: #fff1d6;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 8px 24px rgba(31,77,58,.08);
+  --radius: 16px;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-head: "Fraunces", Georgia, "Times New Roman", serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111513;
+    --surface: #1a201d;
+    --surface-2: #242c28;
+    --text: #e7ece9;
+    --muted: #9da8a2;
+    --line: rgba(231, 236, 233, .12);
+    --forest: #16372a;
+    --forest-2: #6fbf95;
+    --forest-ink: #e7ece9;
+    --accent: #f0904a;
+    --accent-soft: #3a2a1d;
+    --accent-ink: #1a1208;
+    --day1: #f0904a;
+    --day2: #4fb3d6;
+    --extra: #a3a7c4;
+    --ok: #6fcf97;
+    --warn: #f2b94b;
+    --warn-soft: #33290f;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111513;
+  --surface: #1a201d;
+  --surface-2: #242c28;
+  --text: #e7ece9;
+  --muted: #9da8a2;
+  --line: rgba(231, 236, 233, .12);
+  --forest: #16372a;
+  --forest-2: #6fbf95;
+  --forest-ink: #e7ece9;
+  --accent: #f0904a;
+  --accent-soft: #3a2a1d;
+  --accent-ink: #1a1208;
+  --day1: #f0904a;
+  --day2: #4fb3d6;
+  --extra: #a3a7c4;
+  --ok: #6fcf97;
+  --warn: #f2b94b;
+  --warn-soft: #33290f;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  transition: background-color .3s ease, color .3s ease;
+}
+img, svg { max-width: 100%; }
+a { color: var(--forest-2); text-underline-offset: 3px; }
+:root[data-theme="dark"] a { color: var(--forest-2); }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; margin: 0; letter-spacing: -.01em; }
+h2 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+h3 { font-size: 1.15rem; }
+p { margin: 0 0 .75rem; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+.wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+section.block { padding: 56px 0 8px; scroll-margin-top: 64px; }
+.section-head { margin-bottom: 20px; }
+.kicker { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.lead { color: var(--muted); max-width: 60ch; margin-top: 8px; }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 1000;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; gap: 8px; height: 56px; }
+.brand { font-family: var(--font-head); font-weight: 800; font-size: 1.05rem; white-space: nowrap; color: var(--text); text-decoration: none; }
+.brand span { color: var(--accent); }
+.nav { flex: 1; min-width: 0; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { flex: none; padding: 6px 10px; border-radius: 999px; font-size: .85rem; font-weight: 600; color: var(--muted); text-decoration: none; }
+.nav a:hover { background: var(--surface-2); color: var(--text); }
+.icon-btn {
+  flex: none; width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--surface); display: grid; place-items: center; cursor: pointer; font-size: 1.1rem;
+}
+.icon-btn:hover { border-color: var(--accent); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; overflow: hidden; color: #f4f1ea;
+  background: linear-gradient(170deg, #0f2a20 0%, #1f4d3a 55%, #2d6a4f 100%);
+  padding: 48px 0 0;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(60% 50% at 80% 10%, rgba(240,144,74,.35), transparent 70%);
+  pointer-events: none;
+}
+.hero .wrap { position: relative; z-index: 2; }
+.hero .tag { display: inline-flex; gap: 8px; align-items: center; font-size: .8rem; font-weight: 600; letter-spacing: .04em; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); padding: 6px 12px; border-radius: 999px; }
+.hero h1 { font-size: clamp(2.2rem, 9vw, 4.2rem); font-weight: 800; margin: 16px 0 10px; }
+.hero h1 em { font-style: normal; color: #f6a466; }
+.hero .sub { font-size: 1.05rem; max-width: 52ch; opacity: .9; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 16px 0 24px; font-size: .92rem; opacity: .95; }
+.hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; max-width: 460px; }
+.cd-box { background: rgba(10, 25, 19, .45); border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 10px 4px; text-align: center; }
+.cd-num { font-family: var(--font-head); font-size: clamp(1.7rem, 7vw, 2.4rem); font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.cd-lbl { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; opacity: .8; margin-top: 4px; }
+.cd-caption { margin: 10px 0 0; font-size: .88rem; opacity: .85; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 10px 18px; border-radius: 12px; border: 1px solid transparent;
+  font-weight: 700; font-size: .95rem; cursor: pointer; text-decoration: none;
+  transition: transform .15s ease, background-color .2s ease, border-color .2s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-accent { background: var(--accent); color: var(--accent-ink); }
+.hero .btn-accent { background: #f08a3e; color: #1a1208; }
+.btn-ghost { background: rgba(255,255,255,.08); color: #f4f1ea; border-color: rgba(255,255,255,.3); }
+.btn-ghost:hover { background: rgba(255,255,255,.16); }
+.btn-plain { background: var(--surface); border-color: var(--line); color: var(--text); }
+.btn-plain:hover { border-color: var(--accent); }
+.mountains { display: block; width: 100%; height: auto; margin-top: 36px; position: relative; z-index: 1; }
+.mountains .m1 { fill: #3b7a5c; opacity: .55; }
+.mountains .m2 { fill: #24533f; }
+.mountains .m3 { fill: var(--bg); transition: fill .3s ease; }
+.mountains .snow { fill: #f4f1ea; opacity: .85; }
+@media (prefers-reduced-motion: no-preference) {
+  .mountains .m1 { animation: drift 18s ease-in-out infinite alternate; }
+}
+@keyframes drift { from { transform: translateX(0); } to { transform: translateX(-18px); } }
+
+/* ---------- Cards / generic ---------- */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.badge { display: inline-flex; align-items: center; gap: 4px; font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; vertical-align: middle; white-space: nowrap; }
+.badge.warn { background: var(--warn-soft); color: var(--warn); }
+.badge.ok { background: color-mix(in srgb, var(--ok) 15%, transparent); color: var(--ok); }
+.muted { color: var(--muted); }
+.small { font-size: .85rem; }
+
+.reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+}
+
+/* ---------- Tabs ---------- */
+.tabs { display: inline-flex; padding: 4px; gap: 4px; background: var(--surface-2); border-radius: 14px; margin-bottom: 18px; max-width: 100%; }
+.tab { border: 0; background: transparent; padding: 8px 14px; border-radius: 10px; font-weight: 700; font-size: .9rem; cursor: pointer; color: var(--muted); min-height: 40px; }
+.tab[aria-selected="true"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+.tab .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+
+/* ---------- Timeline ---------- */
+.day-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--line); padding: 6px 10px; border-radius: 999px; font-size: .82rem; font-weight: 600; }
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 21px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--tl-color, var(--day1)), color-mix(in srgb, var(--tl-color, var(--day1)) 20%, transparent)); border-radius: 2px; }
+.tl-item { position: relative; padding-left: 56px; margin-bottom: 14px; }
+.tl-icon {
+  position: absolute; left: 0; top: 10px; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--tl-color, var(--day1)); display: grid; place-items: center; font-size: 1.2rem;
+}
+.tl-card { padding: 14px 16px; }
+.tl-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.tl-time { font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; color: var(--tl-color, var(--day1)); font-variant-numeric: tabular-nums; }
+.tl-title { font-weight: 700; font-size: 1.02rem; }
+.tl-place { font-size: .88rem; color: var(--muted); margin: 2px 0 8px; }
+.tl-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.tl-meta .chip { font-size: .76rem; padding: 3px 8px; background: var(--surface-2); border-color: transparent; }
+.tl-tip { font-size: .9rem; background: var(--accent-soft); border-radius: 10px; padding: 8px 10px; margin: 0; }
+.tl-tip strong { color: var(--accent); }
+.tl-map { margin-top: 8px; background: none; border: 0; padding: 4px 0; color: var(--forest-2); font-weight: 700; font-size: .85rem; cursor: pointer; }
+.tl-map:hover { text-decoration: underline; }
+.day1 { --tl-color: var(--day1); }
+.day2 { --tl-color: var(--day2); }
+
+/* ---------- Map ---------- */
+.map-shell { overflow: hidden; }
+#map { height: min(62vh, 520px); min-height: 340px; width: 100%; background: var(--surface-2); z-index: 1; }
+.map-bar { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px; border-bottom: 1px solid var(--line); }
+.filter { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-size: .82rem; font-weight: 700; cursor: pointer; min-height: 36px; }
+.filter[aria-pressed="true"] { background: var(--forest); color: #f4f1ea; border-color: var(--forest); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 12px; font-size: .82rem; color: var(--muted); border-top: 1px solid var(--line); }
+.legend i { display: inline-block; width: 22px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.legend i.dash { background: repeating-linear-gradient(90deg, var(--day2) 0 6px, transparent 6px 10px) !important; }
+.map-fallback { display: grid; place-items: center; height: 100%; padding: 24px; text-align: center; color: var(--muted); }
+.pin {
+  width: 34px; height: 34px; border-radius: 50% 50% 50% 4px; transform: rotate(-45deg);
+  display: grid; place-items: center; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.35);
+}
+.pin span { transform: rotate(45deg); font-size: 16px; line-height: 1; }
+.leaflet-popup-content { font-family: var(--font-body); margin: 12px 14px; line-height: 1.45; }
+.leaflet-popup-content h4 { margin: 0 0 4px; font-family: var(--font-head); font-size: 1rem; }
+.leaflet-popup-content p { margin: 0 0 4px; font-size: .85rem; }
+.leaflet-container { font-family: var(--font-body); }
+.leaflet-container a.leaflet-popup-close-button { width: 28px; height: 28px; font-size: 20px; }
+
+/* ---------- Weather ---------- */
+.grid { display: grid; gap: 14px; }
+@media (min-width: 720px) { .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.wx-card { padding: 16px; }
+.wx-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+.wx-alt { font-size: .78rem; font-weight: 700; color: var(--muted); background: var(--surface-2); padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.wx-day { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 4px 10px; padding: 10px 0; border-top: 1px dashed var(--line); }
+.wx-emoji { font-size: 1.8rem; line-height: 1; grid-row: span 2; align-self: center; text-align: center; }
+.wx-date { font-weight: 700; font-size: .9rem; }
+.wx-date .muted { font-weight: 500; }
+.wx-temp { font-family: var(--font-head); font-weight: 800; font-size: 1.3rem; }
+.wx-stats { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; }
+.wx-stats .chip { font-size: .76rem; padding: 3px 8px; background: var(--surface-2); border-color: transparent; }
+.wx-note { margin-top: 14px; padding: 12px 14px; font-size: .9rem; }
+.skeleton { height: 14px; border-radius: 6px; background: linear-gradient(90deg, var(--surface-2), color-mix(in srgb, var(--surface-2) 50%, var(--surface)), var(--surface-2)); background-size: 200% 100%; margin: 8px 0; }
+@media (prefers-reduced-motion: no-preference) { .skeleton { animation: shimmer 1.2s linear infinite; } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* ---------- Budget ---------- */
+.budget { display: grid; gap: 14px; }
+@media (min-width: 860px) { .budget { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: start; } }
+.controls { padding: 18px; display: grid; gap: 18px; }
+.ctl-label { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: .92rem; margin-bottom: 8px; gap: 8px; }
+.ctl-label output { font-family: var(--font-head); font-size: 1.4rem; color: var(--accent); }
+input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
+.ticks { display: flex; justify-content: space-between; font-size: .72rem; color: var(--muted); padding: 0 4px; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; padding: 4px; background: var(--surface-2); border-radius: 12px; }
+.seg button { border: 0; background: transparent; border-radius: 9px; padding: 8px 6px; font-weight: 700; font-size: .85rem; cursor: pointer; color: var(--muted); min-height: 40px; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+.seg button:disabled { opacity: .45; cursor: not-allowed; }
+.ctl-hint { font-size: .8rem; color: var(--muted); margin: 6px 2px 0; }
+.result { padding: 18px; }
+@media (min-width: 860px) { .result { position: sticky; top: 72px; } }
+.totals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.total-box { background: var(--forest); color: #f4f1ea; border-radius: 14px; padding: 14px; }
+.total-box.alt { background: var(--surface-2); color: var(--text); }
+.total-box .lbl { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+.total-box .val { font-family: var(--font-head); font-weight: 800; font-size: clamp(1.6rem, 7vw, 2.1rem); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.breakdown { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.breakdown td { padding: 7px 0; border-bottom: 1px dashed var(--line); vertical-align: top; }
+.breakdown td:last-child { text-align: right; font-weight: 700; white-space: nowrap; padding-left: 8px; font-variant-numeric: tabular-nums; }
+.breakdown .sub { display: block; font-size: .76rem; color: var(--muted); }
+.bump { animation: none; }
+@media (prefers-reduced-motion: no-preference) { .bump { animation: bump .35s ease; } }
+@keyframes bump { 50% { transform: scale(1.06); } }
+
+/* ---------- Checklist ---------- */
+.check-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 14px; }
+.progress { flex: 1 1 200px; height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--forest-2), var(--accent)); border-radius: 999px; transition: width .35s ease; }
+.check-group { padding: 14px 16px; }
+.check-group h3 { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.check-item { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; cursor: pointer; border-bottom: 1px dashed var(--line); }
+.check-item:last-child { border-bottom: 0; }
+.check-item input { appearance: none; -webkit-appearance: none; flex: none; width: 22px; height: 22px; border: 2px solid var(--muted); border-radius: 7px; margin: 1px 0 0; display: grid; place-items: center; cursor: pointer; transition: background-color .15s ease, border-color .15s ease; }
+.check-item input::after { content: ""; width: 6px; height: 11px; border: solid var(--accent-ink); border-width: 0 3px 3px 0; transform: rotate(45deg) scale(0); margin-top: -3px; transition: transform .15s ease; }
+.check-item input:checked { background: var(--accent); border-color: var(--accent); }
+.check-item input:checked::after { transform: rotate(45deg) scale(1); }
+.check-item input:checked + span { color: var(--muted); text-decoration: line-through; }
+.check-item .why { display: block; font-size: .78rem; color: var(--muted); text-decoration: none; }
+
+/* ---------- Tips / alternatives / links ---------- */
+.tip { padding: 16px; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; }
+.tip .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--accent-soft); display: grid; place-items: center; font-size: 1.2rem; }
+.tip h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.tip p { font-size: .9rem; margin: 0; color: var(--muted); }
+.tip.sos .ic { background: #c0392b; color: #fff; }
+.alt-card { padding: 16px; }
+.alt-card h3 { margin-bottom: 10px; }
+.alt-list { list-style: none; padding: 0; margin: 0; }
+.alt-list li { padding: 10px 0; border-top: 1px dashed var(--line); }
+.alt-list li:first-child { border-top: 0; padding-top: 0; }
+.alt-list strong { display: block; }
+.alt-list span { font-size: .88rem; color: var(--muted); }
+.links { display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 560px) { .links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 900px) { .links { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.link-card { display: flex; gap: 12px; align-items: center; padding: 12px 14px; text-decoration: none; color: var(--text); transition: transform .15s ease, border-color .15s ease; }
+.link-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.link-card .ic { font-size: 1.3rem; flex: none; }
+.link-card strong { display: block; font-size: .95rem; }
+.link-card span { font-size: .8rem; color: var(--muted); overflow-wrap: anywhere; }
+.status-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: .88rem; }
+.status-list li { display: flex; gap: 8px; align-items: flex-start; }
+
+footer { padding: 40px 0 56px; color: var(--muted); font-size: .85rem; }
+footer .card { padding: 16px; }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom)); transform: translate(-50%, 30px);
+  background: var(--text); color: var(--bg); padding: 12px 18px; border-radius: 12px; font-weight: 600; font-size: .9rem;
+  opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease; z-index: 2000; max-width: calc(100vw - 32px); text-align: center;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media print {
+  .topbar, .hero-actions, #map, .map-bar, .toast { display: none !important; }
+  .js .reveal { opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+<body>
+<script>
+  // Apply saved theme before paint to avoid a flash.
+  (function () {
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('dolomiti26-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) { /* storage unavailable */ }
+  })();
+</script>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Dolomiti<span>’26</span></a>
+    <nav class="nav" aria-label="Bölmələr">
+      <a href="#plan">Plan</a>
+      <a href="#xerite">Xəritə</a>
+      <a href="#hava">Hava</a>
+      <a href="#budce">Büdcə</a>
+      <a href="#siyahi">Siyahı</a>
+      <a href="#meslehet">Məsləhət</a>
+      <a href="#plan-b">B planı</a>
+      <a href="#linkler">Linklər</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Temanı dəyiş" title="İşıqlı / qaranlıq tema">🌓</button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="wrap">
+      <span class="tag">🎒 Tələbə səfəri · Cənubi Tirol</span>
+      <h1 id="heroTitle">Bologna → <em>Dolomitlər</em></h1>
+      <p class="sub">İki gün, iki əfsanəvi mənzərə: şənbə Seceda silsiləsi, bazar Alpe di Siusi çəmənlikləri. Gecələmə Bolzano-da.</p>
+      <div class="hero-meta">
+        <span>📅 10–11 oktyabr 2026 (şənbə–bazar)</span>
+        <span>🚆 Bologna Centrale, ~06:30</span>
+        <span>🛏️ Youth Hostel Bolzano</span>
+      </div>
+      <div class="countdown" id="countdown" aria-live="polite">
+        <div class="cd-box"><div class="cd-num" data-k="d">–</div><div class="cd-lbl">gün</div></div>
+        <div class="cd-box"><div class="cd-num" data-k="h">–</div><div class="cd-lbl">saat</div></div>
+        <div class="cd-box"><div class="cd-num" data-k="m">–</div><div class="cd-lbl">dəqiqə</div></div>
+        <div class="cd-box"><div class="cd-num" data-k="s">–</div><div class="cd-lbl">saniyə</div></div>
+      </div>
+      <p class="cd-caption" id="cdCaption">Yola düşməyə qalıb (10 oktyabr, 06:30, İtaliya vaxtı)</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="#plan">Planı aç</a>
+        <button class="btn btn-ghost" type="button" data-share>📤 Dostlarla paylaş</button>
+      </div>
+    </div>
+    <svg class="mountains" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+      <path class="m1" d="M0 160 L120 90 L210 140 L330 40 L430 120 L520 70 L640 150 L760 60 L860 130 L980 30 L1100 120 L1200 80 L1320 140 L1440 90 L1440 220 L0 220 Z"/>
+      <path class="m2" d="M0 190 L140 120 L240 170 L360 80 L470 160 L600 100 L700 170 L820 95 L940 165 L1060 70 L1180 160 L1300 110 L1440 170 L1440 220 L0 220 Z"/>
+      <path class="snow" d="M360 80 L338 100 L352 98 L362 108 L374 96 L384 100 Z M1060 70 L1038 92 L1052 90 L1062 100 L1074 88 L1086 92 Z M820 95 L804 110 L818 108 L826 115 L836 106 Z"/>
+      <path class="m3" d="M0 220 L0 200 Q360 170 720 196 T1440 190 L1440 220 Z"/>
+    </svg>
+  </section>
+
+  <div class="wrap">
+    <!-- ============ TIMELINE ============ -->
+    <section class="block" id="plan" aria-labelledby="planTitle">
+      <div class="section-head reveal">
+        <span class="kicker">Saatbasaat plan</span>
+        <h2 id="planTitle">İki günün marşrutu</h2>
+        <p class="lead">Saatlar təxminidir — avtobus və qatar cədvəlini səfər günü <a href="https://www.suedtirolmobil.info/en/" target="_blank" rel="noopener">südtirolmobil</a> və <a href="https://www.trenitalia.com/" target="_blank" rel="noopener">Trenitalia</a>-da yoxlayın.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Günlər">
+        <button class="tab" role="tab" id="tab-1" aria-controls="day-1" aria-selected="true" data-day="1"><span class="dot" style="background:var(--day1)"></span>1-ci gün · Şənbə</button>
+        <button class="tab" role="tab" id="tab-2" aria-controls="day-2" aria-selected="false" data-day="2" tabindex="-1"><span class="dot" style="background:var(--day2)"></span>2-ci gün · Bazar</button>
+      </div>
+      <div id="day-1" role="tabpanel" aria-labelledby="tab-1" class="day1">
+        <div class="day-summary">
+          <span class="chip">⛰️ Seceda 2519 m</span><span class="chip">🥾 ~3 saat gəzinti</span><span class="chip">🚆🚌🚡 qatar + avtobus + kanat yolu</span>
+        </div>
+        <ol class="timeline" id="tl-1"></ol>
+      </div>
+      <div id="day-2" role="tabpanel" aria-labelledby="tab-2" class="day2" hidden>
+        <div class="day-summary">
+          <span class="chip">🌄 Alpe di Siusi ~1850 m</span><span class="chip">🥾 3–4 saat dairəvi yol</span><span class="chip">🚆 Bologna-ya qayıdış ~17:30–18:30</span>
+        </div>
+        <ol class="timeline" id="tl-2"></ol>
+      </div>
+    </section>
+
+    <!-- ============ MAP ============ -->
+    <section class="block" id="xerite" aria-labelledby="mapTitle">
+      <div class="section-head reveal">
+        <span class="kicker">İnteraktiv xəritə</span>
+        <h2 id="mapTitle">Bütün nöqtələr bir yerdə</h2>
+        <p class="lead">İşarəyə toxunun — qısa təsvir açılacaq. Marşrut xətləri sxematikdir.</p>
+      </div>
+      <div class="card map-shell reveal">
+        <div class="map-bar" role="group" aria-label="Xəritə filtri">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">Hamısı</button>
+          <button class="filter" type="button" data-filter="1" aria-pressed="false">1-ci gün</button>
+          <button class="filter" type="button" data-filter="2" aria-pressed="false">2-ci gün</button>
+          <button class="filter" type="button" data-filter="extra" aria-pressed="false">Əlavə yerlər</button>
+          <button class="filter" type="button" data-filter="full" aria-pressed="false">Bologna daxil</button>
+        </div>
+        <div id="map" role="region" aria-label="Səfər xəritəsi"></div>
+        <div class="legend">
+          <span><i style="background:var(--day1)"></i>1-ci gün</span>
+          <span><i class="dash"></i>2-ci gün</span>
+          <span>🚆 qatar</span><span>🚌 avtobus</span><span>🚡 kanat yolu</span><span>🛏️ gecələmə</span><span>⛰️ zirvə / mənzərə</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WEATHER ============ -->
+    <section class="block" id="hava" aria-labelledby="wxTitle">
+      <div class="section-head reveal">
+        <span class="kicker">Canlı proqnoz · Open-Meteo</span>
+        <h2 id="wxTitle">Dağda hava necə olacaq?</h2>
+        <p class="lead">Hər 1000 m yüksəklikdə temperatur təxminən 6–7°C aşağı düşür. 2500 m-də küləyi mütləq nəzərə alın.</p>
+      </div>
+      <div class="grid grid-3" id="wxGrid" aria-live="polite">
+        <div class="card wx-card"><div class="skeleton" style="width:60%"></div><div class="skeleton"></div><div class="skeleton" style="width:80%"></div></div>
+        <div class="card wx-card"><div class="skeleton" style="width:60%"></div><div class="skeleton"></div><div class="skeleton" style="width:80%"></div></div>
+        <div class="card wx-card"><div class="skeleton" style="width:60%"></div><div class="skeleton"></div><div class="skeleton" style="width:80%"></div></div>
+      </div>
+      <div class="card wx-note" id="wxNote">Proqnoz yüklənir…</div>
+    </section>
+
+    <!-- ============ BUDGET ============ -->
+    <section class="block" id="budce" aria-labelledby="budgetTitle">
+      <div class="section-head reveal">
+        <span class="kicker">Büdcə kalkulyatoru</span>
+        <h2 id="budgetTitle">Neçəyə başa gələcək?</h2>
+        <p class="lead">Seçimləri dəyişin — cəm dərhal yenilənir. Bütün rəqəmlər 2026 üçün təxminidir; <span class="badge warn">⚠ yoxlanılmalı</span> işarəli qiymətləri bron zamanı dəqiqləşdirin.</p>
+      </div>
+      <div class="budget">
+        <div class="card controls reveal">
+          <div>
+            <label class="ctl-label" for="people">Nəfər sayı <output id="peopleOut" for="people">4</output></label>
+            <input type="range" id="people" min="1" max="8" step="1" value="4">
+            <div class="ticks" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+          </div>
+          <div>
+            <div class="ctl-label" id="lblTransport">Bolzano-ya necə gedirik?</div>
+            <div class="seg" role="group" aria-labelledby="lblTransport" data-key="transport">
+              <button type="button" data-val="train" aria-pressed="true">🚆 Qatar</button>
+              <button type="button" data-val="car" aria-pressed="false">🚗 Maşın</button>
+            </div>
+          </div>
+          <div id="trainTypeWrap">
+            <div class="ctl-label" id="lblTrainType">Qatar növü <span class="small muted">(bir istiqamət)</span></div>
+            <div class="seg" role="group" aria-labelledby="lblTrainType" data-key="trainType">
+              <button type="button" data-val="regional" aria-pressed="true">Regional · ~€21</button>
+              <button type="button" data-val="fast" aria-pressed="false">Sürətli · ~€35</button>
+            </div>
+          </div>
+          <div>
+            <div class="ctl-label" id="lblSeceda">Seceda kanat yolu</div>
+            <div class="seg" role="group" aria-labelledby="lblSeceda" data-key="seceda">
+              <button type="button" data-val="yes" aria-pressed="true">⛰️ Bəli</button>
+              <button type="button" data-val="no" aria-pressed="false">Xeyr</button>
+            </div>
+            <p class="ctl-hint">"Xeyr" seçilsə, 1-ci gün Ortisei ətrafında pulsuz gəzinti və ya Renon piramidaları.</p>
+          </div>
+          <div>
+            <div class="ctl-label" id="lblPass">Yerli nəqliyyat</div>
+            <div class="seg" role="group" aria-labelledby="lblPass" data-key="pass">
+              <button type="button" data-val="mobilcard" aria-pressed="true">Mobilcard 3 gün</button>
+              <button type="button" data-val="guestpass" aria-pressed="false">Guest Pass</button>
+            </div>
+            <p class="ctl-hint" id="passHint">Guest Pass pulsuzdur, amma yalnız iştirakçı yaşayış yeri verir — hosteldən soruşun.</p>
+          </div>
+        </div>
+        <div class="card result reveal" aria-live="polite">
+          <div class="totals">
+            <div class="total-box"><div class="lbl">Adambaşı</div><div class="val" id="perPerson">€0</div></div>
+            <div class="total-box alt"><div class="lbl">Qrup üçün</div><div class="val" id="groupTotal">€0</div></div>
+          </div>
+          <table class="breakdown"><tbody id="breakdown"></tbody></table>
+          <p class="ctl-hint" id="budgetFoot"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHECKLIST ============ -->
+    <section class="block" id="siyahi" aria-labelledby="checkTitle">
+      <div class="section-head reveal">
+        <span class="kicker">Əşyalar siyahısı</span>
+        <h2 id="checkTitle">Çantaya nə qoymalı?</h2>
+        <p class="lead">Oktyabrda 2500 m-də səhər mənfi temperatur, günortadan sonra isə günəş ola bilər — geyim qat-qat olmalıdır. Qeydlər bu cihazda saxlanılır.</p>
+      </div>
+      <div class="check-top">
+        <strong id="checkCount">0 / 0</strong>
+        <div class="progress" role="progressbar" aria-label="Hazırlıq" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="checkBar"></div></div>
+        <button class="btn btn-plain" type="button" id="checkReset">Sıfırla</button>
+      </div>
+      <div class="grid grid-2" id="checklist"></div>
+    </section>
+
+    <!-- ============ TIPS ============ -->
+    <section class="block" id="meslehet" aria-labelledby="tipsTitle">
+      <div class="section-head reveal">
+        <span class="kicker">Vacib məsləhətlər</span>
+        <h2 id="tipsTitle">Bilmədən getməyin</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="card tip sos reveal"><div class="ic">🆘</div><div><h3>Fövqəladə hal: 112</h3><p>Vahid Avropa nömrəsi — polis, təcili yardım və dağ xilasetmə (Bergrettung). Zəng edərkən yerinizi deyin; telefonda GPS açıq olsun.</p></div></div>
+        <div class="card tip reveal"><div class="ic">📅</div><div><h3>Əvvəlcədən bron edin</h3><p>Seceda biletləri onlayn konkret gün və 30 dəqiqəlik slotla satılır (tutumun ~2/3 hissəsi). Hostel, qatar biletləri də — erkən alış ucuzdur.</p></div></div>
+        <div class="card tip reveal"><div class="ic">📷</div><div><h3>Vebkameraya baxın</h3><p>Səhər <a href="https://www.val-gardena.com/en/webcams-val-gardena-dolomites/webcam-seceda-live" target="_blank" rel="noopener">Seceda vebkamerasını</a> açın. Zirvə buludun içindədirsə, günləri dəyişin: şənbə Alpe di Siusi, bazar Seceda.</p></div></div>
+        <div class="card tip reveal"><div class="ic">🚡</div><div><h3>Kanat yolları tez bağlanır</h3><p>Seceda ~08:30–17:00/17:30, Seiser Alm Bahn 08:00–18:00 (7 sentyabr – 2 noyabr). Son enişə 16:30-dan gec qalmayın — növbə ola bilər.</p></div></div>
+        <div class="card tip reveal"><div class="ic">🛒</div><div><h3>Bazar günü mağazalar bağlıdır</h3><p>Qəlyanaltı, su və nahar üçün sendviçi şənbə axşamı Bolzano-da alın. Dağ daxmalarında çox vaxt yalnız nağd pul keçir.</p></div></div>
+        <div class="card tip reveal"><div class="ic">🎫</div><div><h3>Mobilcard-ı validasiya edin</h3><p>Hər minişdə mavi aparata toxundurun. Mobilcard Bologna qatarında keçmir — o bileti ayrıca alın. Regional kağız bileti platformada validasiya edin.</p></div></div>
+        <div class="card tip reveal"><div class="ic">🌇</div><div><h3>Gün qısadır</h3><p>Gün batımı ~18:40. Dağda qaranlıq tez düşür — fənər götürün, gəzintini 16:00-a qədər bitirin.</p></div></div>
+        <div class="card tip reveal"><div class="ic">🍷</div><div><h3>Törggelen mövsümü</h3><p>Oktyabr — təzə şərab, qovrulmuş şabalıd, speck və knödel vaxtı. 11 oktyabr (bazar) Oberbozen-də (Renon) Törggele festivalı 10:30–16:00 elan olunub.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ============ PLAN B ============ -->
+    <section class="block" id="plan-b" aria-labelledby="altTitle">
+      <div class="section-head reveal">
+        <span class="kicker">Alternativlər</span>
+        <h2 id="altTitle">B planı</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="card alt-card reveal">
+          <h3>🌧️ Hava pis olarsa</h3>
+          <ul class="alt-list">
+            <li><strong>Ötzi — Cənubi Tirol Arxeologiya Muzeyi</strong><span>Bolzano, 5300 il əvvəlki "buz adamı". Çərşənbə axşamı–bazar 10:00–18:00, son giriş 17:30. Bazar ertəsi bağlıdır.</span></li>
+            <li><strong>Renon: kanat yolu + tramvay + torpaq piramidaları</strong><span>Hosteldən 2 dəqiqə — Rittner Seilbahn Mobilcard/Guest Pass ilə. Yüngül yağışda da olar; meşə yolu ilə piramidalar.</span></li>
+            <li><strong>Merano və termal hamamlar</strong><span>Regional qatarla ~40 dəq (Mobilcard keçir). Promenadlar və Terme Merano.</span></li>
+            <li><strong>Günləri dəyişin</strong><span>Alpe di Siusi (1850 m) Seceda-dan aşağıdadır — bulud zamanı daha yaxşı seçimdir.</span></li>
+            <li><strong>Bolzano köhnə şəhəri</strong><span>Laubengasse arkadaları, Piazza Walther, Duomo, meyvə bazarı (Piazza Erbe).</span></li>
+          </ul>
+        </div>
+        <div class="card alt-card reveal">
+          <h3>🗓️ 3-cü gün qalsaq (bazar ertəsi, 12 oktyabr)</h3>
+          <ul class="alt-list">
+            <li><strong>Lago di Braies</strong><span>Qatar Fortezza → Villabassa + avtobus; hər istiqamətə ~2.5–3 saat. Göl ətrafı dairə ~1 saat. Erkən çıxın.</span></li>
+            <li><strong>Val di Funes · Santa Maddalena</strong><span>Qatar Chiusa/Klausen + avtobus (~1.5 saat). Odle zirvələri fonunda kilsə — klassik kartpostal mənzərəsi.</span></li>
+            <li><strong>Lago di Carezza</strong><span>Bolzano-dan avtobusla ~1 saat. Latemar əks olunan zümrüd göl, ətrafı 30 dəq.</span></li>
+            <li><strong>Renon piramidaları</strong><span>Yarım günlük sakit seçim; qayıdış qatarından əvvəl ideal.</span></li>
+            <li><strong>Qeyd</strong><span>Mobilcard 3 gün bazar ertəsini də əhatə edir (2 günlük büdcəyə artıq daxildir). Ötzi muzeyi bazar ertəsi bağlıdır. Hostelə +1 gecə (~€40–55).</span></li>
+          </ul>
+        </div>
+        <div class="card alt-card reveal" style="grid-column: 1 / -1">
+          <h3>🚗 Maşınla getsək</h3>
+          <ul class="alt-list">
+            <li><strong>Bologna → Bolzano ~3 saat (A1 + A22, ödənişli)</strong><span>Pullu yol hər istiqamətə təxminən €18–22. 4–5 nəfərə bölündükdə qatara yaxın, bəzən ucuz çıxır və Lago di Braies / Carezza kimi yerlərə rahat çatırsınız.</span></li>
+            <li><strong>Diqqət</strong><span>Alpe di Siusi yolu gündüz şəxsi maşınlara bağlıdır — Siusi-də aşağı stansiyanın pulsuz parkinqindən kanat yolu ilə qalxın. Compatsch parkinqi (P2) €30/gün və onlayn bron tələb edir. Ortisei-də ödənişli parkinq.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LINKS ============ -->
+    <section class="block" id="linkler" aria-labelledby="linksTitle">
+      <div class="section-head reveal">
+        <span class="kicker">Faydalı linklər</span>
+        <h2 id="linksTitle">Bilet, cədvəl, vebkamera</h2>
+      </div>
+      <div class="links">
+        <a class="card link-card" href="https://www.trenitalia.com/" target="_blank" rel="noopener"><span class="ic">🚆</span><div><strong>Trenitalia</strong><span>Regional və Frecciarossa biletləri</span></div></a>
+        <a class="card link-card" href="https://www.italotreno.com/" target="_blank" rel="noopener"><span class="ic">🚄</span><div><strong>Italo</strong><span>Sürətli qatarlar Bologna ↔ Bolzano</span></div></a>
+        <a class="card link-card" href="https://www.suedtirolmobil.info/en/" target="_blank" rel="noopener"><span class="ic">🚌</span><div><strong>südtirolmobil</strong><span>Avtobus 350 / 170 cədvəli, Mobilcard</span></div></a>
+        <a class="card link-card" href="https://www.seceda.it/" target="_blank" rel="noopener"><span class="ic">🚡</span><div><strong>Seceda kanat yolu</strong><span>Qiymətlər və onlayn slot bronu</span></div></a>
+        <a class="card link-card" href="https://www.seiseralm.it/en/info-service/mobility/seiser-alm-aerial-cableway-summer.html" target="_blank" rel="noopener"><span class="ic">🚠</span><div><strong>Seiser Alm Bahn</strong><span>Siusi → Compatsch, saatlar və qiymətlər</span></div></a>
+        <a class="card link-card" href="https://www.val-gardena.com/en/webcams-val-gardena-dolomites/webcam-seceda-live" target="_blank" rel="noopener"><span class="ic">📷</span><div><strong>Seceda vebkamerası</strong><span>2450 m, canlı görüntü</span></div></a>
+        <a class="card link-card" href="https://www.valgardena.it/en/webcams/" target="_blank" rel="noopener"><span class="ic">🎥</span><div><strong>Val Gardena vebkameraları</strong><span>Seceda, Col Raiser, Seiser Alm…</span></div></a>
+        <a class="card link-card" href="https://meteo.provincia.bz.it/" target="_blank" rel="noopener"><span class="ic">🌦️</span><div><strong>Cənubi Tirol meteo</strong><span>Rəsmi regional proqnoz</span></div></a>
+        <a class="card link-card" href="https://www.jugendherberge.it/" target="_blank" rel="noopener"><span class="ic">🛏️</span><div><strong>Youth Hostel Bolzano</strong><span>Rittnerstraße 23 · +39 0471 300 865</span></div></a>
+        <a class="card link-card" href="https://www.iceman.it/en/" target="_blank" rel="noopener"><span class="ic">🧊</span><div><strong>Ötzi muzeyi</strong><span>Açılış saatları və biletlər</span></div></a>
+        <a class="card link-card" href="https://www.suedtirol.info/en/en/information/suedtirol-guest-pass" target="_blank" rel="noopener"><span class="ic">🎫</span><div><strong>Südtirol Guest Pass</strong><span>Nə daxildir, kimə verilir</span></div></a>
+        <a class="card link-card" href="https://open-meteo.com/" target="_blank" rel="noopener"><span class="ic">🛰️</span><div><strong>Open-Meteo</strong><span>Bu saytdakı proqnozun mənbəyi</span></div></a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="card">
+      <h3 style="margin-bottom:10px">Məlumatların statusu (8 oktyabr 2026)</h3>
+      <ul class="status-list">
+        <li><span class="badge ok">✓</span><span>Seiser Alm Bahn: ged-gəl €30, 08:00–18:00, mövsüm 2 noyabra qədər (operatorun saytı).</span></li>
+        <li><span class="badge ok">✓</span><span>Mobilcard 2026: 1 gün €22, 3 gün €32; uzaq məsafəli qatarlarda keçmir.</span></li>
+        <li><span class="badge ok">✓</span><span>Seceda mövsümü 2 noyabr 2026-ya qədər; onlayn slotlu bron.</span></li>
+        <li><span class="badge warn">⚠</span><span>Seceda qiyməti: 2026 mənbələri ged-gəl ~€74 göstərir (2025-də ~€45) — €55–60 təsdiqlənmədi. Kalkulyator €74 ilə hesablayır.</span></li>
+        <li><span class="badge warn">⚠</span><span>Hostel qiyməti (~€40–55), qatar tarifləri, yanacaq, avtobus saatları — təxminidir.</span></li>
+        <li><span class="badge warn">⚠</span><span>Guest Pass: hostelin iştirak edib-etmədiyi təsdiqlənməyib.</span></li>
+      </ul>
+      <p class="small" style="margin-top:12px">Xəritə: © OpenStreetMap töhfəçiləri. Hava: Open-Meteo.com (CC BY 4.0).</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ================= Storage (always guarded) ================= */
+  var store = {
+    get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* ignore */ } },
+    del: function (k) { try { window.localStorage.removeItem(k); } catch (e) { /* ignore */ } }
+  };
+
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function el(tag, cls, html) { var n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; }
+
+  var toastTimer;
+  function toast(msg) {
+    var t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 3200);
+  }
+
+  /* ================= Theme ================= */
+  (function theme() {
+    var btn = $('#themeBtn');
+    function current() {
+      var t = document.documentElement.getAttribute('data-theme');
+      if (t) return t;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    function paint() { btn.textContent = current() === 'dark' ? '☀️' : '🌙'; }
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      store.set('dolomiti26-theme', next);
+      paint();
+    });
+    paint();
+  })();
+
+  /* ================= Countdown ================= */
+  (function countdown() {
+    var target = new Date('2026-10-10T06:30:00+02:00').getTime();
+    var end = new Date('2026-10-11T22:00:00+02:00').getTime();
+    var nums = {};
+    $all('#countdown .cd-num').forEach(function (n) { nums[n.getAttribute('data-k')] = n; });
+    var cap = $('#cdCaption');
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+    function tick() {
+      var now = Date.now();
+      var diff = target - now;
+      if (diff <= 0) {
+        ['d', 'h', 'm', 's'].forEach(function (k) { nums[k].textContent = '0'; });
+        cap.textContent = now < end ? 'Səfər davam edir — xoş yol! 🏔️' : 'Səfər başa çatdı. Növbəti macəraya qədər! 👋';
+        return false;
+      }
+      var s = Math.floor(diff / 1000);
+      nums.d.textContent = Math.floor(s / 86400);
+      nums.h.textContent = pad(Math.floor((s % 86400) / 3600));
+      nums.m.textContent = pad(Math.floor((s % 3600) / 60));
+      nums.s.textContent = pad(s % 60);
+      return true;
+    }
+    if (tick()) { var iv = setInterval(function () { if (!tick()) clearInterval(iv); }, 1000); }
+  })();
+
+  /* ================= Places ================= */
+  var P = {
+    bologna:    { ll: [44.5058, 11.3431], ic: '🚆', day: 'full', name: 'Bologna Centrale', desc: 'Start və finiş. Regional qatar ~3 s 20 dəq, Frecciarossa/Italo ~2 s 30 dəq.' },
+    bolzano:    { ll: [46.4967, 11.3580], ic: '🚆', day: 'both', name: 'Bolzano/Bozen vağzalı', desc: 'Qatardan düşüb hostelə 3 dəqiqə. Mobilcard-ı burada alın.' },
+    hostel:     { ll: [46.4987, 11.3604], ic: '🛏️', day: 'both', name: 'Youth Hostel Bolzano', desc: 'Rittnerstraße 23. Səhər yeməyi daxil, ~€40–55/gecə. Tel: +39 0471 300 865.' },
+    busstation: { ll: [46.4975, 11.3555], ic: '🚌', day: 'both', name: 'Bolzano avtovağzalı', desc: 'Avtobus 350 (Ortisei) və 170 (Siusi) buradan gedir.' },
+    ortisei:    { ll: [46.5747, 11.6724], ic: '🚌', day: '1', name: 'Ortisei / St. Ulrich', desc: 'Val Gardena-nın mərkəzi (1236 m). Taxta oyma sənəti, Piazza S. Antonio.' },
+    secedaLift: { ll: [46.5772, 11.6760], ic: '🚡', day: '1', name: 'Ortisei → Furnes kabin yolu', desc: 'Seceda-ya qalxışın aşağı stansiyası. Onlayn slotla bron edin.' },
+    furnes:     { ll: [46.5880, 11.6990], ic: '🚡', day: '1', name: 'Furnes (aralıq stansiya)', desc: 'Burada kanat yoluna keçid (Furnes → Seceda).' },
+    seceda:     { ll: [46.6005, 11.7262], ic: '⛰️', day: '1', name: 'Seceda (2519 m)', desc: 'Odle/Geisler zirvələrinin məşhur "dalğa" mənzərəsi. Küləkli və soyuq ola bilər!' },
+    siusi:      { ll: [46.5431, 11.5631], ic: '🚡', day: '2', name: 'Siusi — Seiser Alm Bahn', desc: 'Aşağı stansiya. Ged-gəl €30, 08:00–18:00. Pulsuz parkinq.' },
+    compatsch:  { ll: [46.5410, 11.6215], ic: '🚡', day: '2', name: 'Compatsch (~1850 m)', desc: 'Yuxarı stansiya və dairəvi marşrutun başlanğıcı.' },
+    sassolungo: { ll: [46.5225, 11.7330], ic: '⛰️', day: '2', name: 'Sassolungo / Langkofel (3181 m)', desc: 'Alpe di Siusi gəzintisinin əsas mənzərəsi.' },
+    otzi:       { ll: [46.4996, 11.3489], ic: '🧊', day: 'both', name: 'Ötzi muzeyi', desc: 'Cənubi Tirol Arxeologiya Muzeyi. Çə–B 10:00–18:00, B.e. bağlı.' },
+    walther:    { ll: [46.4983, 11.3542], ic: '🍽️', day: '1', name: 'Piazza Walther / Laubengasse', desc: 'Şam yeməyi və Törggelen üçün köhnə şəhər.' },
+    renon:      { ll: [46.5498, 11.4333], ic: '⭐', day: 'extra', name: 'Renon torpaq piramidaları', desc: 'Rittner Seilbahn + tramvay ilə. Pis hava üçün yaxşı plan B.' },
+    carezza:    { ll: [46.4091, 11.5755], ic: '⭐', day: 'extra', name: 'Lago di Carezza', desc: 'Latemar əks olunan zümrüd göl. Bolzano-dan avtobusla ~1 saat.' },
+    braies:     { ll: [46.6943, 12.0855], ic: '⭐', day: 'extra', name: 'Lago di Braies', desc: '3-cü gün üçün: qatar + avtobus, hər tərəfə ~2.5–3 saat.' },
+    funes:      { ll: [46.6436, 11.7225], ic: '⭐', day: 'extra', name: 'Val di Funes · Santa Maddalena', desc: 'Odle fonunda kilsə — klassik mənzərə. Qatar + avtobus ~1.5 saat.' }
+  };
+
+  /* ================= Timeline data ================= */
+  var DAYS = {
+    1: [
+      { t: '06:30', title: 'Bologna Centrale-də görüş və qatar', place: 'Bologna Centrale', ic: '🚆', mode: 'Qatar', dur: '2 s 30 dəq – 3 s 20 dəq', tip: 'Regional qatar ən ucuzudur (~€21). Kağız regional bileti minməzdən əvvəl platformada validasiya edin.', poi: 'bologna' },
+      { t: '~10:00', title: 'Bolzano: çantalar hostelə, Mobilcard', place: 'Youth Hostel Bolzano, Rittnerstraße 23', ic: '🛏️', mode: 'Piyada', dur: '3 dəq vağzaldan', tip: 'Qeydiyyat adətən günortadan sonradır — çantaları saxlamağı xahiş edin. Mobilcard-ı vağzaldakı kassadan alın.', poi: 'hostel' },
+      { t: '10:25', title: 'Avtobus 350 → Ortisei', place: 'Bolzano avtovağzalı', ic: '🚌', mode: 'Avtobus 350', dur: '~1 saat', tip: 'Avtovağzal dəmiryol vağzalından 3 dəqiqəlik məsafədədir. Avtobuslar təxminən saatda bir — dəqiq vaxtı südtirolmobil-də yoxlayın.', poi: 'busstation' },
+      { t: '11:30', title: 'Ortisei → Furnes → Seceda', place: 'Seceda kabin + kanat yolu', ic: '🚡', mode: 'Kanat yolu', dur: '~25 dəq qalxış', tip: 'Bilet konkret gün və 30 dəqiqəlik slotla satılır. 2026 qiyməti ~€74 ged-gəl göstərilir — rəsmi saytda yoxlayın.', poi: 'secedaLift' },
+      { t: '12:00', title: 'Seceda silsiləsi və gəzinti', place: 'Seceda, 2519 m', ic: '⛰️', mode: 'Piyada', dur: '3–3.5 saat', tip: 'Məşhur mənzərə zirvə stansiyasından 10–15 dəqiqədir. Pieralongia istiqamətində dairə ~2 saat. Oktyabrda bəzi daxmalar bağlı ola bilər — yemək götürün.', poi: 'seceda' },
+      { t: '15:45', title: 'Enişə başlayın', place: 'Seceda → Furnes → Ortisei', ic: '🚡', mode: 'Kanat yolu', dur: '~25 dəq', tip: 'Son eniş ~17:00–17:30. Növbə ola bilər — 16:30-dan gec qalmayın.', poi: 'furnes' },
+      { t: '16:30', title: 'Ortisei-də gəzinti', place: 'Ortisei mərkəzi, Via Rezia', ic: '🚶', mode: 'Piyada', dur: '~1 saat', tip: 'Taxta oyma emalatxanaları, Piazza S. Antonio. İsti şokolad və ya dondurma üçün ideal fasilə.', poi: 'ortisei' },
+      { t: '17:35', title: 'Avtobus 350 → Bolzano', place: 'Ortisei, Piazza S. Antonio', ic: '🚌', mode: 'Avtobus 350', dur: '~1 saat', tip: 'Gün batımı ~18:40 — pəncərə kənarında oturun, Val Gardena mənzərəsi gözəldir.', poi: 'ortisei' },
+      { t: '19:30', title: 'Şam yeməyi — Törggelen', place: 'Bolzano köhnə şəhər, Laubengasse', ic: '🍽️', mode: 'Piyada', dur: '~2 saat', tip: 'Təzə şərab, şabalıd, speck, knödel. Sabah üçün qəlyanaltını bu axşam alın — bazar günü mağazalar bağlıdır.', poi: 'walther' },
+      { t: '22:30', title: 'Hostel, istirahət', place: 'Youth Hostel Bolzano', ic: '🛏️', mode: '—', dur: 'gecə', tip: 'Telefonları və powerbank-ı şarj edin, sabahkı avtobus saatını yoxlayın.', poi: 'hostel' }
+    ],
+    2: [
+      { t: '07:30', title: 'Səhər yeməyi və check-out', place: 'Youth Hostel Bolzano', ic: '🛏️', mode: '—', dur: '~45 dəq', tip: 'Çantaları hosteldə saxlamağı xahiş edin. Su butulkalarını və termosu doldurun.', poi: 'hostel' },
+      { t: '08:20', title: 'Avtobus 170 → Siusi', place: 'Bolzano avtovağzalı', ic: '🚌', mode: 'Avtobus 170', dur: '~45–50 dəq', tip: '"Seiser Alm Bahn" dayanacağında düşün. Bazar günü cədvəli fərqlidir — südtirolmobil-də yoxlayın.', poi: 'busstation' },
+      { t: '09:15', title: 'Seiser Alm Bahn → Compatsch', place: 'Siusi (Seis), aşağı stansiya', ic: '🚡', mode: 'Kanat yolu', dur: '~15 dəq', tip: 'Ged-gəl €30 (2026, rəsmi). Saatlar 08:00–18:00.', poi: 'siusi' },
+      { t: '09:30', title: 'Dairəvi marşrut — Sassolungo mənzərəsi', place: 'Compatsch → Panorama → Saltria istiqaməti → Compatsch', ic: '🥾', mode: 'Piyada', dur: '3–4 saat, ~10–12 km', tip: 'Avropanın ən böyük yüksəklik çəmənliyi. Yol asandır, işarələri izləyin. Alternativ: Puflatsch "cadugər skamyaları" dairəsi (~3 saat).', poi: 'sassolungo' },
+      { t: '13:30', title: 'Daxmada nahar', place: 'Alpe di Siusi (malga / hütte)', ic: '🍽️', mode: '—', dur: '~1 saat', tip: 'Kaiserschmarrn, knödel, isti çay. Nağd pul götürün — bəzi daxmalar oktyabrda bağlanır.', poi: 'compatsch' },
+      { t: '14:45', title: 'Eniş → Siusi', place: 'Compatsch → Siusi', ic: '🚡', mode: 'Kanat yolu', dur: '~15 dəq', tip: 'Kanat yolu 18:00-a qədər işləyir, amma qatar üçün tez enin.', poi: 'compatsch' },
+      { t: '15:20', title: 'Avtobus 170 → Bolzano', place: 'Siusi, Seiser Alm Bahn dayanacağı', ic: '🚌', mode: 'Avtobus 170', dur: '~45–50 dəq', tip: 'Bazar axşamı avtobuslar dolu ola bilər — bir avtobus ehtiyat vaxt saxlayın.', poi: 'siusi' },
+      { t: '16:15', title: 'Çantalar + Ötzi və ya Piazza Walther', place: 'Bolzano mərkəzi', ic: '🧊', mode: 'Piyada', dur: '~1 saat', tip: 'Ötzi muzeyi bazar günü açıqdır, son giriş 17:30. Vaxt azdırsa — Piazza Walther-də qəhvə.', poi: 'otzi' },
+      { t: '17:30–18:30', title: 'Qatar → Bologna', place: 'Bolzano/Bozen vağzalı', ic: '🚆', mode: 'Qatar', dur: '2 s 30 dəq – 3 s 20 dəq', tip: 'Bologna-ya ~20:00–21:45 çatış. Bileti əvvəlcədən alın — bazar axşamı qatarlar dolu olur.', poi: 'bolzano' }
+    ]
+  };
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  (function renderTimeline() {
+    [1, 2].forEach(function (d) {
+      var ol = $('#tl-' + d);
+      DAYS[d].forEach(function (it) {
+        var li = el('li', 'tl-item reveal');
+        li.innerHTML =
+          '<div class="tl-icon" aria-hidden="true">' + it.ic + '</div>' +
+          '<article class="card tl-card">' +
+            '<div class="tl-top"><span class="tl-time">' + esc(it.t) + '</span><span class="tl-title">' + esc(it.title) + '</span></div>' +
+            '<div class="tl-place">📍 ' + esc(it.place) + '</div>' +
+            '<div class="tl-meta"><span class="chip">🚦 ' + esc(it.mode) + '</span><span class="chip">⏱ ' + esc(it.dur) + '</span></div>' +
+            '<p class="tl-tip"><strong>Məsləhət:</strong> ' + esc(it.tip) + '</p>' +
+            (it.poi ? '<button class="tl-map" type="button" data-poi="' + it.poi + '">🗺️ Xəritədə göstər</button>' : '') +
+          '</article>';
+        ol.appendChild(li);
+      });
+    });
+
+    var tabs = $all('.tab');
+    function select(day, focus) {
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-day') === String(day);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        if (on && focus) t.focus();
+      });
+      $('#day-1').hidden = String(day) !== '1';
+      $('#day-2').hidden = String(day) !== '2';
+      $all('#day-' + day + ' .reveal').forEach(function (n) { n.classList.add('in'); });
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () { select(t.getAttribute('data-day')); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { select(t.getAttribute('data-day') === '1' ? 2 : 1, true); e.preventDefault(); }
+      });
+    });
+    // Auto-open day 2 on Sunday of the trip.
+    var now = new Date();
+    if (now >= new Date('2026-10-11T00:00:00+02:00') && now < new Date('2026-10-12T00:00:00+02:00')) select(2);
+  })();
+
+  /* ================= Map ================= */
+  var mapApi = (function initMap() {
+    var box = $('#map');
+    if (typeof window.L === 'undefined') {
+      box.innerHTML = '<div class="map-fallback"><div><p><strong>Xəritə yüklənmədi.</strong></p><p class="small">İnternet bağlantısını yoxlayın. Marşrut: Bologna → Bolzano → Ortisei → Seceda; Bolzano → Siusi → Compatsch.</p></div></div>';
+      return null;
+    }
+    var L = window.L;
+    var css = getComputedStyle(document.documentElement);
+    function col(v) { return css.getPropertyValue(v).trim(); }
+
+    var map = L.map(box, { scrollWheelZoom: false, zoomControl: true, attributionControl: true });
+
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' });
+    var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxZoom: 17, subdomains: 'abc', attribution: '© OpenStreetMap, SRTM · © <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)' });
+    var carto = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { maxZoom: 19, subdomains: 'abcd', attribution: '© OpenStreetMap, © <a href="https://carto.com/attributions">CARTO</a>' });
+    osm.addTo(map);
+    L.control.layers({ 'OpenStreetMap': osm, 'Topoqrafik (OpenTopoMap)': topo, 'Sadə (CARTO)': carto }, null, { position: 'topright' }).addTo(map);
+
+    // OSM may refuse tiles to pages without a Referer (e.g. opened via file://) — fall back to CARTO.
+    var loaded = 0, failed = 0, swapped = false;
+    osm.on('tileload', function () { loaded++; });
+    osm.on('tileerror', function () {
+      failed++;
+      if (!swapped && loaded === 0 && failed >= 4) { swapped = true; map.removeLayer(osm); carto.addTo(map); }
+    });
+
+    var markers = {};
+    var groups = { '1': L.layerGroup(), '2': L.layerGroup(), both: L.layerGroup(), extra: L.layerGroup(), full: L.layerGroup() };
+    Object.keys(P).forEach(function (k) {
+      var p = P[k];
+      var bg = p.day === '1' ? col('--day1') : p.day === '2' ? col('--day2') : p.day === 'extra' ? col('--extra') : '#1f4d3a';
+      var icon = L.divIcon({ className: '', html: '<div class="pin" style="background:' + bg + '"><span>' + p.ic + '</span></div>', iconSize: [34, 34], iconAnchor: [17, 34], popupAnchor: [0, -30] });
+      var m = L.marker(p.ll, { icon: icon, title: p.name, alt: p.name }).bindPopup('<h4>' + esc(p.name) + '</h4><p>' + esc(p.desc) + '</p>');
+      markers[k] = m;
+      groups[p.day].addLayer(m);
+    });
+
+    function ll(keys) { return keys.map(function (k) { return Array.isArray(k) ? k : P[k].ll; }); }
+    var day1Color = col('--day1'), day2Color = col('--day2');
+    var rail = ll(['bologna', [44.83, 11.25], [45.43, 10.98], [45.88, 11.04], [46.07, 11.12], 'bolzano']);
+    var routes = {
+      full: [
+        L.polyline(rail, { color: day1Color, weight: 4, opacity: .85 }).bindTooltip('🚆 Bologna → Bolzano (şənbə)'),
+        L.polyline(rail.slice().reverse(), { color: day2Color, weight: 4, opacity: .85, dashArray: '8 8' }).bindTooltip('🚆 Bolzano → Bologna (bazar)')
+      ],
+      '1': [
+        L.polyline(ll(['busstation', [46.5199, 11.4441], [46.5973, 11.5310], [46.5850, 11.6000], 'ortisei']), { color: day1Color, weight: 4, opacity: .9 }).bindTooltip('🚌 Avtobus 350'),
+        L.polyline(ll(['secedaLift', 'furnes', 'seceda']), { color: day1Color, weight: 4, opacity: .9, dashArray: '2 8', lineCap: 'round' }).bindTooltip('🚡 Kanat yolu'),
+        L.polyline(ll(['bolzano', 'busstation']), { color: day1Color, weight: 3, opacity: .6 })
+      ],
+      '2': [
+        L.polyline(ll(['busstation', [46.5199, 11.4441], [46.5167, 11.5010], 'siusi']), { color: day2Color, weight: 4, opacity: .9, dashArray: '10 8' }).bindTooltip('🚌 Avtobus 170'),
+        L.polyline(ll(['siusi', 'compatsch']), { color: day2Color, weight: 4, opacity: .9, dashArray: '2 8', lineCap: 'round' }).bindTooltip('🚡 Seiser Alm Bahn'),
+        L.polyline(ll(['compatsch', [46.5380, 11.6450], [46.5290, 11.6720], [46.5235, 11.6600], [46.5330, 11.6380], 'compatsch']), { color: day2Color, weight: 4, opacity: .9, dashArray: '10 8' }).bindTooltip('🥾 Dairəvi gəzinti (təxmini)')
+      ]
+    };
+    var routeGroups = {};
+    Object.keys(routes).forEach(function (k) { routeGroups[k] = L.layerGroup(routes[k]); });
+
+    var bounds = {
+      all: L.latLngBounds([[46.47, 11.33], [46.61, 11.75]]),
+      '1': L.latLngBounds([[46.49, 11.34], [46.61, 11.74]]),
+      '2': L.latLngBounds([[46.49, 11.34], [46.555, 11.75]]),
+      extra: L.latLngBounds([[46.39, 11.33], [46.71, 12.10]]),
+      full: L.latLngBounds([[44.49, 10.95], [46.62, 11.75]])
+    };
+
+    function show(filter) {
+      Object.keys(groups).forEach(function (k) { map.removeLayer(groups[k]); });
+      Object.keys(routeGroups).forEach(function (k) { map.removeLayer(routeGroups[k]); });
+      var g = [], r = [];
+      if (filter === 'all') { g = ['1', '2', 'both']; r = ['1', '2']; }
+      else if (filter === '1') { g = ['1', 'both']; r = ['1']; }
+      else if (filter === '2') { g = ['2', 'both']; r = ['2']; }
+      else if (filter === 'extra') { g = ['extra', 'both']; r = []; }
+      else if (filter === 'full') { g = ['1', '2', 'both', 'full', 'extra']; r = ['1', '2', 'full']; }
+      r.forEach(function (k) { routeGroups[k].addTo(map); });
+      g.forEach(function (k) { groups[k].addTo(map); });
+      map.fitBounds(bounds[filter], { padding: [16, 16] });
+      $all('.filter').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-filter') === filter ? 'true' : 'false'); });
+    }
+    $all('.filter').forEach(function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-filter')); }); });
+    show('all');
+
+    function focus(key) {
+      var p = P[key];
+      if (!p) return;
+      var f = p.day === 'full' ? 'full' : p.day === 'extra' ? 'extra' : p.day === '2' ? '2' : p.day === '1' ? '1' : 'all';
+      show(f);
+      document.getElementById('xerite').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(function () {
+        map.invalidateSize();
+        map.setView(p.ll, p.day === 'full' ? 11 : 13, { animate: true });
+        markers[key].openPopup();
+      }, 450);
+    }
+    window.addEventListener('resize', function () { map.invalidateSize(); });
+    return { focus: focus, map: map };
+  })();
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-poi]');
+    if (b && mapApi) mapApi.focus(b.getAttribute('data-poi'));
+    else if (b) document.getElementById('xerite').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  /* ================= Weather (Open-Meteo, no key) ================= */
+  var WX_SPOTS = [
+    { name: 'Ortisei', alt: 1236, lat: 46.5747, lon: 11.6724, note: 'Val Gardena kəndi — 1-ci gün' },
+    { name: 'Seceda', alt: 2500, lat: 46.6005, lon: 11.7262, note: 'Silsilə — 1-ci gün' },
+    { name: 'Alpe di Siusi', alt: 1850, lat: 46.5410, lon: 11.6215, note: 'Compatsch — 2-ci gün' }
+  ];
+  var TRIP_DAYS = ['2026-10-10', '2026-10-11'];
+  var WMO = {
+    0: ['☀️', 'Açıq səma'], 1: ['🌤️', 'Əsasən açıq'], 2: ['⛅', 'Qismən buludlu'], 3: ['☁️', 'Tutqun'],
+    45: ['🌫️', 'Duman'], 48: ['🌫️', 'Qırovlu duman'],
+    51: ['🌦️', 'Zəif çiskin'], 53: ['🌦️', 'Çiskin'], 55: ['🌧️', 'Güclü çiskin'], 56: ['🌧️', 'Donan çiskin'], 57: ['🌧️', 'Donan çiskin'],
+    61: ['🌦️', 'Zəif yağış'], 63: ['🌧️', 'Yağış'], 65: ['🌧️', 'Güclü yağış'], 66: ['🌧️', 'Donan yağış'], 67: ['🌧️', 'Donan yağış'],
+    71: ['🌨️', 'Zəif qar'], 73: ['🌨️', 'Qar'], 75: ['❄️', 'Güclü qar'], 77: ['🌨️', 'Qar dənələri'],
+    80: ['🌦️', 'Leysan'], 81: ['🌧️', 'Leysan'], 82: ['⛈️', 'Güclü leysan'], 85: ['🌨️', 'Qar leysanı'], 86: ['❄️', 'Güclü qar leysanı'],
+    95: ['⛈️', 'Tufan'], 96: ['⛈️', 'Dolu ilə tufan'], 99: ['⛈️', 'Dolu ilə tufan']
+  };
+  var AZ_DAYS = ['Bazar', 'Bazar ertəsi', 'Çərşənbə axşamı', 'Çərşənbə', 'Cümə axşamı', 'Cümə', 'Şənbə'];
+  var AZ_MON = ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek'];
+  function azDate(iso) { var d = new Date(iso + 'T12:00:00Z'); return { day: AZ_DAYS[d.getUTCDay()], date: d.getUTCDate() + ' ' + AZ_MON[d.getUTCMonth()] }; }
+  function r0(n) { return n == null || isNaN(n) ? '–' : Math.round(n); }
+  function r1(n) { return n == null || isNaN(n) ? '–' : (Math.round(n * 10) / 10).toString().replace('.', ','); }
+
+  function wxFallback(reason) {
+    $('#wxGrid').innerHTML = WX_SPOTS.map(function (s) {
+      var typical = s.alt >= 2400 ? '−3…+6°C, güclü külək, ilk qar mümkündür'
+        : s.alt >= 1700 ? '0…+10°C, səhər şaxta, günorta günəşli ola bilər'
+        : '+2…+14°C, səhər sərin, gündüz mülayim';
+      return '<div class="card wx-card"><div class="wx-head"><h3>' + s.name + '</h3><span class="wx-alt">' + s.alt + ' m</span></div>' +
+        '<p class="small muted">' + s.note + '</p><p><strong>Oktyabr üçün tipik:</strong> ' + typical + '.</p></div>';
+    }).join('');
+    $('#wxNote').innerHTML = '⚠️ ' + reason + ' Səfərdən əvvəl <a href="https://meteo.provincia.bz.it/" target="_blank" rel="noopener">meteo.provincia.bz.it</a> saytına və Seceda vebkamerasına baxın.';
+  }
+
+  function renderWx(list, days, isTrip) {
+    $('#wxGrid').innerHTML = list.map(function (data, i) {
+      var s = WX_SPOTS[i];
+      var dd = data.daily;
+      var rows = days.map(function (iso) {
+        var j = dd.time.indexOf(iso);
+        if (j < 0) return '';
+        var w = WMO[dd.weather_code[j]] || ['🌡️', 'Məlumat yoxdur'];
+        var dt = azDate(iso);
+        var sunset = dd.sunset && dd.sunset[j] ? dd.sunset[j].slice(11, 16) : '–';
+        return '<div class="wx-day">' +
+          '<div class="wx-emoji" aria-hidden="true">' + w[0] + '</div>' +
+          '<div class="wx-date">' + dt.day + ', ' + dt.date + ' <span class="muted">· ' + w[1] + '</span></div>' +
+          '<div class="wx-temp">' + r0(dd.temperature_2m_max[j]) + '° / ' + r0(dd.temperature_2m_min[j]) + '°</div>' +
+          '<div class="wx-stats">' +
+            '<span class="chip" title="Yağıntı">💧 ' + r1(dd.precipitation_sum[j]) + ' mm' + (dd.precipitation_probability_max && dd.precipitation_probability_max[j] != null ? ' · ' + dd.precipitation_probability_max[j] + '%' : '') + '</span>' +
+            '<span class="chip" title="Maks. külək / şiddətli əsmə">💨 ' + r0(dd.wind_speed_10m_max[j]) + (dd.wind_gusts_10m_max ? '–' + r0(dd.wind_gusts_10m_max[j]) : '') + ' km/s</span>' +
+            '<span class="chip" title="Gün batımı">🌇 ' + sunset + '</span>' +
+          '</div></div>';
+      }).join('');
+      return '<div class="card wx-card"><div class="wx-head"><h3>' + s.name + '</h3><span class="wx-alt">' + s.alt + ' m</span></div>' +
+        '<p class="small muted" style="margin:0">' + s.note + '</p>' + (rows || '<p class="small">Bu günlər üçün məlumat yoxdur.</p>') + '</div>';
+    }).join('');
+    var when = new Date().toLocaleTimeString('az-Latn-AZ', { hour: '2-digit', minute: '2-digit' });
+    $('#wxNote').innerHTML = (isTrip
+      ? '✅ Səfər günləri üçün canlı proqnoz (yenilənib: ' + when + '). '
+      : 'ℹ️ Səfər tarixləri üçün proqnoz hələ (və ya artıq) mövcud deyil — cari proqnoz göstərilir. ') +
+      'Temperatur seçilmiş hündürlüyə uyğunlaşdırılıb. Dağda hava sürətlə dəyişir — çıxmazdan əvvəl yenidən yoxlayın.';
+  }
+
+  (function loadWeather() {
+    var base = 'https://api.open-meteo.com/v1/forecast';
+    var daily = 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,sunset';
+    function url(extra) {
+      return base + '?latitude=' + WX_SPOTS.map(function (s) { return s.lat; }).join(',') +
+        '&longitude=' + WX_SPOTS.map(function (s) { return s.lon; }).join(',') +
+        '&elevation=' + WX_SPOTS.map(function (s) { return s.alt; }).join(',') +
+        '&daily=' + daily + '&timezone=Europe%2FRome' + extra;
+    }
+    function get(u) {
+      var ctrl = 'AbortController' in window ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 10000);
+      return fetch(u, ctrl ? { signal: ctrl.signal } : {}).then(function (r) {
+        clearTimeout(timer);
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function (j) { return Array.isArray(j) ? j : [j]; });
+    }
+    if (!('fetch' in window)) { wxFallback('Brauzer proqnozu yükləyə bilmir.'); return; }
+    get(url('&start_date=' + TRIP_DAYS[0] + '&end_date=' + TRIP_DAYS[1]))
+      .then(function (list) { renderWx(list, TRIP_DAYS, true); })
+      .catch(function () {
+        // Trip dates out of the forecast window, or the API is unreachable — try a plain 3-day forecast.
+        return get(url('&forecast_days=3')).then(function (list) {
+          var days = list[0].daily.time.slice(0, 2);
+          renderWx(list, days, false);
+        });
+      })
+      .catch(function () { wxFallback('Proqnozu indi yükləmək mümkün olmadı (internet və ya API əlçatan deyil).'); });
+  })();
+
+  /* ================= Budget ================= */
+  var PRICES = {
+    trainRegional: 21,   // per direction, Bologna ↔ Bolzano regional (approx.)
+    trainFast: 35,       // per direction, Frecciarossa/Italo, early-bird average (approx.)
+    hostel: 48,          // per person per night with breakfast (approx. €40–55)
+    cityTax: 3,          // local tourist tax per person per night (approx.)
+    mobilcard3: 32,      // Mobilcard 3 days 2026 (confirmed)
+    guestPass: 0,
+    seceda: 74,          // Ortisei–Seceda return 2026 (unverified)
+    seiserAlm: 30,       // Seiser Alm Bahn return 2026 (confirmed)
+    food: 50,            // lunch + dinner + snacks for 2 days (estimate)
+    carRental: 110,      // per car, 2 days (estimate)
+    carFuel: 80,         // per car, ~680 km (estimate)
+    carTolls: 40,        // per car, A1 + A22 return (estimate)
+    carParking: 20,      // per car, Ortisei + Bolzano (estimate)
+    seatsPerCar: 5
+  };
+
+  function calcBudget(s) {
+    var n = Math.max(1, Math.min(8, s.people | 0));
+    var lines = [];
+    function add(label, sub, pp, flag) { lines.push({ label: label, sub: sub, pp: pp, group: pp * n, flag: !!flag }); }
+    if (s.transport === 'train') {
+      var leg = s.trainType === 'fast' ? PRICES.trainFast : PRICES.trainRegional;
+      add('Qatar Bologna ↔ Bolzano', (s.trainType === 'fast' ? 'Frecciarossa/Italo' : 'Regional') + ', 2 × €' + leg, leg * 2, true);
+      if (s.pass === 'mobilcard') add('Mobilcard 3 gün', 'Avtobus 350/170, Renon kanat yolu', PRICES.mobilcard3);
+      else add('Südtirol Guest Pass', 'Hostel iştirak edirsə — pulsuz', PRICES.guestPass, true);
+    } else {
+      var cars = Math.ceil(n / PRICES.seatsPerCar);
+      var perCar = PRICES.carRental + PRICES.carFuel + PRICES.carTolls + PRICES.carParking;
+      add('Maşın' + (cars > 1 ? ' × ' + cars : ''),
+        'İcarə €' + PRICES.carRental + ' + yanacaq €' + PRICES.carFuel + ' + A22/A1 €' + PRICES.carTolls + ' + parkinq €' + PRICES.carParking + ' = €' + perCar + '/maşın, ' + n + ' nəfərə bölünür',
+        (perCar * cars) / n, true);
+    }
+    add('Hostel, 1 gecə', 'Səhər yeməyi daxil', PRICES.hostel, true);
+    add('Şəhər vergisi', 'Yerində ödənilir', PRICES.cityTax, true);
+    if (s.seceda === 'yes') add('Seceda kanat yolu', 'Ortisei ↔ Seceda ged-gəl', PRICES.seceda, true);
+    add('Seiser Alm Bahn', 'Siusi ↔ Compatsch ged-gəl', PRICES.seiserAlm);
+    add('Yemək və qəlyanaltı', '2 gün nahar + şam + kofe', PRICES.food, true);
+    var pp = lines.reduce(function (a, l) { return a + l.pp; }, 0);
+    return { people: n, lines: lines, perPerson: pp, group: pp * n, cars: s.transport === 'car' ? Math.ceil(n / PRICES.seatsPerCar) : 0 };
+  }
+  function eur(x) {
+    var v = Math.round(x * 100) / 100;
+    return '€' + (Number.isInteger(v) ? String(v) : v.toFixed(2).replace('.', ','));
+  }
+  window.__dolomiti = { calcBudget: calcBudget, PRICES: PRICES };
+
+  (function budgetUi() {
+    var state = { people: 4, transport: 'train', trainType: 'regional', seceda: 'yes', pass: 'mobilcard' };
+    var range = $('#people');
+    function render() {
+      var r = calcBudget(state);
+      $('#peopleOut').textContent = r.people;
+      var pp = $('#perPerson'), gt = $('#groupTotal');
+      pp.textContent = eur(r.perPerson);
+      gt.textContent = eur(r.group);
+      [pp, gt].forEach(function (n) { n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump'); });
+      $('#breakdown').innerHTML = r.lines.map(function (l) {
+        return '<tr><td>' + esc(l.label) + (l.flag ? ' <span class="badge warn" title="Təxmini / yoxlanılmalı">≈</span>' : '') +
+          '<span class="sub">' + esc(l.sub) + (r.people > 1 ? ' · qrup: ' + eur(l.group) : '') + '</span></td><td>' + eur(l.pp) + '</td></tr>';
+      }).join('');
+      var foot = 'Mobilcard 3 günlük (€32) iki ədəd 1 günlükdən (2 × €22 = €44) ucuzdur. ';
+      if (state.transport === 'car') foot += r.cars > 1 ? 'Maşında maks. ' + PRICES.seatsPerCar + ' yer — ' + r.cars + ' maşın lazımdır. ' : '';
+      foot += 'Seceda qiyməti (€74) təsdiqlənməyib.';
+      $('#budgetFoot').textContent = foot;
+      $('#trainTypeWrap').hidden = state.transport !== 'train';
+      $all('[data-key="pass"] button').forEach(function (b) { b.disabled = state.transport === 'car'; });
+      $('#passHint').textContent = state.transport === 'car'
+        ? 'Maşınla getdikdə yerli nəqliyyat kartı lazım deyil.'
+        : 'Guest Pass pulsuzdur, amma yalnız iştirakçı yaşayış yeri verir — hosteldən soruşun.';
+    }
+    range.addEventListener('input', function () { state.people = parseInt(range.value, 10) || 1; render(); });
+    $all('.seg').forEach(function (g) {
+      var key = g.getAttribute('data-key');
+      $all('button', g).forEach(function (b) {
+        b.addEventListener('click', function () {
+          state[key] = b.getAttribute('data-val');
+          $all('button', g).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+          render();
+        });
+      });
+    });
+    render();
+  })();
+
+  /* ================= Checklist ================= */
+  var CHECK = [
+    { g: '🧥 Geyim (qat-qat)', items: [
+      ['Termo alt qat (köynək + şalvar)', 'Pambıq yox — tərləyəndə soyudur'],
+      ['Flis və ya isti orta qat', ''],
+      ['Külək/yağış keçirməyən gödəkçə', '2500 m-də külək çox soyuq olur'],
+      ['Papaq və əlcək', 'Səhər temperatur 0°-dən aşağı ola bilər'],
+      ['Baf / şərf', ''],
+      ['Yun corab + ehtiyat cüt', ''],
+      ['Rahat gəzinti şalvarı', 'Cins şalvar islananda ağırlaşır']
+    ] },
+    { g: '🥾 Ayaqqabı', items: [
+      ['Trekking ayaqqabısı (artıq geyilmiş)', 'Yeni ayaqqabı = qabarcıq'],
+      ['Yüngül ayaqqabı / terlik', 'Hostel duşu və şəhər üçün']
+    ] },
+    { g: '📄 Sənədlər və pul', items: [
+      ['Pasport / ID + yaşayış icazəsi', 'Permesso di soggiorno'],
+      ['Tələbə kartı', 'Muzey endirimləri üçün'],
+      ['Qatar biletləri (offline saxlanmış)', ''],
+      ['Hostel təsdiqi', ''],
+      ['Seceda biletinin QR-kodu', ''],
+      ['Tibbi sığorta / EHIC kartı', ''],
+      ['Nağd pul (€40–60) + bank kartı', 'Daxmalar çox vaxt yalnız nağd qəbul edir']
+    ] },
+    { g: '🎒 Avadanlıq', items: [
+      ['Bel çantası 20–30 L', ''],
+      ['Su butulkası 1–1,5 L', ''],
+      ['Termos — isti çay', ''],
+      ['Powerbank + kabel', 'Soyuqda batareya tez bitir'],
+      ['Fənər / başlıq fənəri', 'Gün batımı ~18:40'],
+      ['Günəş eynəyi + SPF 30+ krem', 'Yüksəklikdə UV güclüdür'],
+      ['Hostel şkafı üçün kilid', ''],
+      ['Trekking çubuqları (istəyə görə)', ''],
+      ['Zibil üçün kiçik torba', 'Dağda heç nə qoymuruq']
+    ] },
+    { g: '🩹 Sağlamlıq', items: [
+      ['İlk yardım dəsti', 'Plastır, bint, dezinfeksiya, qabarcıq plastırı'],
+      ['Ağrıkəsici və şəxsi dərmanlar', ''],
+      ['Dodaq balzamı', ''],
+      ['Gigiyena əşyaları + kiçik dəsmal', '']
+    ] },
+    { g: '🍫 Yemək və texnologiya', items: [
+      ['Qəlyanaltı: qoz-fındıq, şokolad, batonlar', ''],
+      ['Bazar günü üçün sendviç', 'Mağazalar bağlı olacaq'],
+      ['Offline xəritə yüklənib', 'Dağda internet zəif ola bilər'],
+      ['südtirolmobil tətbiqi', 'Avtobus saatları'],
+      ['112 nömrəsi yadda', '']
+    ] }
+  ];
+  (function checklist() {
+    var KEY = 'dolomiti26-checklist';
+    var saved = {};
+    try { saved = JSON.parse(store.get(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+    var root = $('#checklist');
+    var total = 0;
+    CHECK.forEach(function (grp, gi) {
+      var card = el('div', 'card check-group reveal');
+      card.appendChild(el('h3', null, esc(grp.g)));
+      grp.items.forEach(function (it, ii) {
+        var id = 'c' + gi + '-' + ii;
+        total++;
+        var lab = el('label', 'check-item');
+        lab.innerHTML = '<input type="checkbox" id="' + id + '" data-id="' + id + '"' + (saved[id] ? ' checked' : '') + '><span>' + esc(it[0]) +
+          (it[1] ? '<span class="why">' + esc(it[1]) + '</span>' : '') + '</span>';
+        card.appendChild(lab);
+      });
+      root.appendChild(card);
+    });
+    function update() {
+      var boxes = $all('input[type="checkbox"]', root);
+      var done = boxes.filter(function (b) { return b.checked; }).length;
+      var pct = total ? Math.round(done / total * 100) : 0;
+      $('#checkCount').textContent = done + ' / ' + total + (done === total ? ' — hazırsınız! 🎉' : '');
+      $('#checkBar').style.width = pct + '%';
+      $('.progress').setAttribute('aria-valuenow', String(pct));
+    }
+    root.addEventListener('change', function (e) {
+      var t = e.target;
+      if (!t.matches('input[type="checkbox"]')) return;
+      if (t.checked) saved[t.getAttribute('data-id')] = 1; else delete saved[t.getAttribute('data-id')];
+      store.set(KEY, JSON.stringify(saved));
+      update();
+    });
+    $('#checkReset').addEventListener('click', function () {
+      saved = {};
+      store.del(KEY);
+      $all('input[type="checkbox"]', root).forEach(function (b) { b.checked = false; });
+      update();
+      toast('Siyahı sıfırlandı');
+    });
+    update();
+  })();
+
+  /* ================= Share ================= */
+  function copyLegacy(text) {
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      if (ok) resolve(); else reject(new Error('copy failed'));
+    });
+  }
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(function () { return copyLegacy(text); });
+    }
+    return copyLegacy(text);
+  }
+  $all('[data-share]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var data = { title: 'Bologna → Dolomitlər · 10–11 oktyabr', text: 'Dolomitlər səfərinin planı: Seceda + Alpe di Siusi 🏔️', url: location.href };
+      var isFile = location.protocol === 'file:';
+      if (navigator.share && !isFile) {
+        navigator.share(data).catch(function (err) { if (err && err.name !== 'AbortError') fallback(); });
+      } else { fallback(); }
+      function fallback() {
+        copyText(location.href).then(function () {
+          toast(isFile ? 'Link kopyalandı — amma bu lokal fayldır: dostlara faylın özünü göndərin.' : 'Link kopyalandı! Dostlarla paylaşın 🙌');
+        }).catch(function () { toast('Kopyalamaq alınmadı. Linki ünvan sətrindən kopyalayın.'); });
+      }
+    });
+  });
+
+  /* ================= Reveal on scroll ================= */
+  (function reveal() {
+    var items = $all('.reveal');
+    if (!('IntersectionObserver' in window)) { items.forEach(function (n) { n.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+    items.forEach(function (n) { io.observe(n); });
+  })();
+})();
+</script>
+</body>
+</html>
